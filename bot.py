@@ -2,7 +2,7 @@ import json
 import traceback
 import os
 
-os.chdir()
+#os.chdir("..")
 
 import discord
 from discord.ext import commands

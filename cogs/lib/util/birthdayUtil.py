@@ -1,8 +1,7 @@
 import datetime
-
 import dateutil.parser
-
 import fileWriter
+
 
 fileName = "birthdays"
 
@@ -21,11 +20,5 @@ def removeDay(data: dict, name: str) -> dict:
     return data
 
 
-def readDay(data: dict, name: str) -> str:
-    return str(datetime.date.fromtimestamp(data[name]).strftime("%A %d. %B %Y"))
-
-
-
-print(readDay(fileWriter.read("birthdays"), "usernameB"))
-
-print(parseDate("Dec 11 2004"))
+def readDay(name: str) -> str:
+    return str(datetime.date.fromtimestamp(fileWriter.read(fileName)[name]).strftime("%A %d. %B %Y"))
