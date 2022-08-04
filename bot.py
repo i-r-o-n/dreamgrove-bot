@@ -11,11 +11,6 @@ secrets = json.load(open("secrets.json"))
 
 gameActivity = "dg.help | Official bot of the Dreamgrove discord server!"
 
-initial_extensions = [
-    "cogs.general",
-    #"cogs.birthday"
-]
-
 def getPrefix(bot, message):
     prefixes = ["dg."]
     if not message.guild: 
@@ -27,6 +22,15 @@ bot = commands.Bot(
     command_prefix = getPrefix, 
     description="Dreamgrove Guild Bot")
 
+
+# for fileName in os.listdir("./cogs"):
+#     if fileName.endswith(".py"):
+#         bot.load_extension(f"cogs.{fileName[:-3]}")
+
+initial_extensions = [
+    "cogs.general",
+    #"cogs.economy"
+]
 
 if __name__ in "__main__":
     for extension in initial_extensions:
