@@ -1,12 +1,10 @@
 import discord
 from discord.ext import commands
 
-from bot import secrets
+from bot import rootPath
 
-from pprint import pprint
 import sys
-print("general\'s path variables")
-#pprint(sys.path)
+sys.path.append(rootPath)
 
 from lib.util import birthdayUtil
 
