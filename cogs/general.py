@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-from .lib.util import birthdayUtil
+from lib.util import birthdayUtil
 
 class General(commands.Cog):
     def __init__(self, bot):

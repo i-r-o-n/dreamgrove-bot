@@ -1,3 +1,3 @@
-import fileWriter as fileWriter
+import fileWriter
 
 
