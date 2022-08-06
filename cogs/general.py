@@ -6,7 +6,7 @@ from bot import secrets
 from pprint import pprint
 import sys
 print("general\'s path variables")
-pprint(sys.path)
+#pprint(sys.path)
 
 from lib.util import birthdayUtil
 
