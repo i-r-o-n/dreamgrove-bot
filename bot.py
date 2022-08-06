@@ -3,9 +3,12 @@ import traceback
 import os
 import sys
 
+from pprint import pprint
+
+sys.path.append(' ')
 sys.path.append(sys.path[0])
 
-#os.chdir("..")
+pprint(sys.path)
 
 import discord
 from discord.ext import commands

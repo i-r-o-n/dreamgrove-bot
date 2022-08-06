@@ -1,6 +1,13 @@
 import discord
 from discord.ext import commands
 
+from bot import secrets
+
+from pprint import pprint
+import sys
+print("general\'s path variables")
+pprint(sys.path)
+
 from lib.util import birthdayUtil
 
 class General(commands.Cog):
