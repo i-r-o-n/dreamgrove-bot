@@ -1,11 +1,6 @@
 import discord
 from discord.ext import commands
 
-from bot import rootPath
-
-import sys
-sys.path.append(rootPath)
-
 from lib.util import birthdayUtil
 
 class General(commands.Cog):

@@ -1,6 +1,12 @@
 import datetime
 import dateutil.parser
-import fileWriter
+
+import sys
+from pprint import pprint
+
+sys.path.append("c:\\Users\\alexa\\OneDrive\\Documents\\Coding\\python\\Dreamgrove Bot")
+
+from lib.util.fileWriter import FileWriter
 
 
 fileName = "birthdays"
@@ -21,4 +27,7 @@ def removeDay(data: dict, name: str) -> dict:
 
 
 def readDay(name: str) -> str:
-    return str(datetime.date.fromtimestamp(fileWriter.read(fileName)[name]).strftime("%A %d. %B %Y"))
+    return str(datetime.date.fromtimestamp(FileWriter.read(fileName)[name]).strftime("%A %d. %B %Y"))
+
+
+print(readDay("usernameA"))

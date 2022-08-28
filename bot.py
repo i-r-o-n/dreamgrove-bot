@@ -3,9 +3,10 @@ import traceback
 import os
 import sys
 
-
+from pprint import pprint
 rootPath = sys.path[0]
 sys.path.append(rootPath)
+pprint(sys.path)
 
 import discord
 from discord.ext import commands
