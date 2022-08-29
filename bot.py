@@ -1,3 +1,4 @@
+from calendar import c
 import json
 import traceback
 import os
@@ -5,8 +6,8 @@ import sys
 
 from pprint import pprint
 rootPath = sys.path[0]
-sys.path.append(rootPath)
-pprint(sys.path)
+# sys.path.append(rootPath)
+# pprint(sys.path)
 
 import discord
 from discord.ext import commands
@@ -21,10 +22,14 @@ def getPrefix(bot, message):
         return ""
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
+intents = discord.Intents.default()
+intents.presences = True
+intents.members = True
 
 bot = commands.Bot(
     command_prefix = getPrefix, 
-    description="Dreamgrove Guild Bot")
+    description="Dreamgrove Guild Bot",
+    intents = intents)
 
 
 # for fileName in os.listdir("./cogs"):
