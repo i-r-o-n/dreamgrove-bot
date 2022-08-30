@@ -63,15 +63,20 @@ class General(commands.Cog):
     async def birthdaySet(self, ctx, *, date: str):
         if isinstance(date, commands.MissingRequiredArgument):
             await ctx.send("your birthdate is a required argument.")
+        
+        embed = discord.Embed(title=f"{ctx.author}", description="birthday has been set to", color=ctx.author.color)
+        
         if date == "remove":
-            birthdayUtil.removeDay(ctx.author.id)
-            embed.add_field(name='\uFEFF', value=f"removed your birthday from the registry.")
+            try:
+                birthdayUtil.removeDay(str(ctx.author.id))
+                embed.add_field(name='\uFEFF', value=f"removed your birthday from the registry.")
+            except KeyError:
+                embed.add_field(name='\uFEFF', value=f"could not find your birthday in the registry.")
         else:
             parsedDate = birthdayUtil.parseDate(date)
-            embed = discord.Embed(title=f"{ctx.author}", description="birthday has been set to", color=ctx.author.color)
             embed.add_field(name='\uFEFF', value=f"{parsedDate}")
             birthdayUtil.addDay(ctx.author.id, parsedDate)
-            embed.add_field(name='\uFEFF', value=f"use `birthdayset remove` to remove your birthday from the registry.")
+            embed.add_field(name='\uFEFF', value=f"use `birthdayset remove` to remove your birthday from the registry.", inline=False)
         await ctx.send(content=None, embed=embed)
 
 
