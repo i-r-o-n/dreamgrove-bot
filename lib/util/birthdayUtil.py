@@ -1,3 +1,5 @@
+import discord
+
 import datetime
 import dateutil.parser
 
@@ -16,22 +18,17 @@ def parseDate(dateInput: str) -> datetime.datetime:
     return dateutil.parser.parse(dateInput)
 
 
-def addDay(name: str, date: datetime.datetime) -> None:
+def addDay(user: discord.Member.id, date: datetime.datetime) -> None:
     data = FileWriter.read(fileName)
-    # if name in data:
-    #     data.update()
-    data[name] = int(datetime.datetime.timestamp(date))
-    FileWriter.write(data, fileName)
-
-#keyerror here!
-def removeDay(name: str) -> None:
-    data = FileWriter.read(fileName)
-    data.pop(name)
+    data[str(user)] = int(datetime.datetime.timestamp(date))
     FileWriter.write(data, fileName)
 
 
-def readDay(name: str) -> str:
-    return str(datetime.date.fromtimestamp(FileWriter.read(fileName)[name]).strftime("%A %d. %B %Y"))
+def removeDay(user: discord.Member.id) -> None:
+    data = FileWriter.read(fileName)
+    data.pop(str(user))
+    FileWriter.write(data, fileName)
 
 
-#print(readDay("iron#1337"))
+def readDay(user: discord.Member.id) -> str:
+    return str(datetime.date.fromtimestamp(FileWriter.read(fileName)[str(user)]).strftime("%A %d. %B %Y"))

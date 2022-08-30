@@ -38,7 +38,9 @@ bot = commands.Bot(
 
 initial_extensions = [
     "cogs.general",
-    #"cogs.economy"
+    "cogs.economy",
+    "cogs.birthdays",
+    "cogs.error"
 ]
 
 if __name__ in "__main__":
