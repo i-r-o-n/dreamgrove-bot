@@ -17,7 +17,7 @@ secrets = json.load(open("secrets.json"))
 gameActivity = "dg.help | Official bot of the Dreamgrove discord server!"
 
 def getPrefix(bot, message):
-    prefixes = ["dg."]
+    prefixes = [".", "dg."]
     if not message.guild: 
         return ""
     return commands.when_mentioned_or(*prefixes)(bot, message)
@@ -40,7 +40,7 @@ initial_extensions = [
     "cogs.general",
     "cogs.economy",
     "cogs.birthdays",
-    "cogs.error"
+    #"cogs.error"
 ]
 
 if __name__ in "__main__":
