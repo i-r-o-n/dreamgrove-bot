@@ -1,8 +1,13 @@
+from calendar import c
 import json
 import traceback
 import os
+import sys
 
-#os.chdir("..")
+from pprint import pprint
+rootPath = sys.path[0]
+# sys.path.append(rootPath)
+# pprint(sys.path)
 
 import discord
 from discord.ext import commands
@@ -11,22 +16,32 @@ secrets = json.load(open("secrets.json"))
 
 gameActivity = "dg.help | Official bot of the Dreamgrove discord server!"
 
-initial_extensions = [
-    "cogs.general",
-    #"cogs.birthday"
-]
-
 def getPrefix(bot, message):
-    prefixes = ["dg."]
+    prefixes = [".", "dg."]
     if not message.guild: 
         return ""
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
+intents = discord.Intents.default()
+intents.presences = True
+intents.members = True
 
 bot = commands.Bot(
     command_prefix = getPrefix, 
-    description="Dreamgrove Guild Bot")
+    description="Dreamgrove Guild Bot",
+    intents = intents)
 
+
+# for fileName in os.listdir("./cogs"):
+#     if fileName.endswith(".py"):
+#         bot.load_extension(f"cogs.{fileName[:-3]}")
+
+initial_extensions = [
+    "cogs.general",
+    "cogs.economy",
+    "cogs.birthdays",
+    #"cogs.error"
+]
 
 if __name__ in "__main__":
     for extension in initial_extensions:

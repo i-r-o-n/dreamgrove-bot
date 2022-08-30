@@ -1,10 +1,10 @@
 import discord
 from discord.ext import commands
 
-import sys
-sys.path.append("../")
+from matplotlib import pyplot as plt
+import numpy as np
 
-from lib.util import birthdayUtil
+from lib.util import statusUtil
 
 
 class General(commands.Cog):
@@ -35,20 +35,22 @@ class General(commands.Cog):
         embed.set_author(icon_url=member.avatar_url, name=str(member))
         embed.add_field(name='\uFEFF', value=perms)
         await ctx.send(content=None, embed=embed)
-    
 
-    @commands.command(name='birthday', aliases=['bday', 'bd'])
+
+    @commands.command(name='statuses', aliases=['sts'])
     @commands.guild_only()
-    async def birthday(self, ctx, *, member: discord.Member=None):
-        if not member:
-            member = ctx.author
-        embed = discord.Embed(title=f"{member}'s Birthday", description='\uFEFF', color=member.color)
-        try:
-            day = birthdayUtil.readDay(member)
-            embed.add_field(name='\uFEFF', value=day)
-        except KeyError:
-            embed.add_field(name='\uFEFF', value="could not find a birthday for this user.")
-        await ctx.send(content=None, embed=embed)
+    async def userStatuses(self, ctx):
+        statuses: dict = statusUtil.getMemberStatuses(ctx.guild)
+        
+        data = np.array(list(statuses.values()))
+        labels = list(statuses.keys())
+        colors = [statusUtil.statusColor(color) for color in statuses.keys()]
+
+        plt.pie(data, labels = labels, colors = colors)
+        plt.savefig("statusImg.png", transparent = True)
+        plt.close()
+        image = discord.File("statusImg.png")
+        await ctx.send(file=image)
 
 # listeners
 
