@@ -22,9 +22,7 @@ def getPrefix(bot, message):
         return ""
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
-intents = discord.Intents.default()
-intents.presences = True
-intents.members = True
+intents = discord.Intents.all()
 
 bot = commands.Bot(
     command_prefix = getPrefix, 
@@ -54,6 +52,7 @@ async def on_ready() -> None:
     print(f"Discord.py Version: {discord.__version__}")
     await bot.change_presence(activity=discord.Game(name=gameActivity, type=1))
     print("Successfully logged in and booted.")
+
 
 
 bot.run(
