@@ -3,6 +3,7 @@ import json
 import traceback
 import os
 import sys
+import asyncio
 
 from pprint import pprint
 rootPath = sys.path[0]
@@ -34,16 +35,19 @@ bot = commands.Bot(
 #     if fileName.endswith(".py"):
 #         bot.load_extension(f"cogs.{fileName[:-3]}")
 
-initial_extensions = [
+extensions = [
     "cogs.general",
     "cogs.economy",
-    "cogs.birthdays",
+    "cogs.birthdays"
     #"cogs.error"
 ]
 
-if __name__ in "__main__":
-    for extension in initial_extensions:
-        bot.load_extension(extension)
+async def main():
+    if __name__ in "__main__":
+            for extension in extensions:
+                await bot.load_extension(extension, "cogs")
+
+asyncio.run(main())
 
 @bot.event
 async def on_ready() -> None:
@@ -57,5 +61,4 @@ async def on_ready() -> None:
 
 bot.run(
     secrets["bot_token"],
-    bot=True,
     reconnect=True)
