@@ -58,7 +58,6 @@ async def on_ready() -> None:
     print("Successfully logged in and booted.")
 
 
-
 bot.run(
     secrets["bot_token"],
     reconnect=True)

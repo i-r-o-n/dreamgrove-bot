@@ -1,7 +1,11 @@
 /Procfile
+
 /secrets.json
-**/__pychache__
-*/__pychache__
+
 /env
 /.env
+
+**/__pychache__
+*/__pychache__
 .pylintrc
+.pyc

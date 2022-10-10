@@ -59,10 +59,5 @@ class General(commands.Cog):
         await member.send(f"Hey {member.mention}!\nplease introduct yourself in the meet-the-members channel in the Dreamgrove discord!")
 
 
-    # @bot.event
-    # async def on_member_update(self, before, after):
-    #     print("update")
-        
-
 def setup(bot):
     bot.add_cog(General(bot))

@@ -71,15 +71,7 @@ class Economy(commands.Cog):
     @commands.command(name="leaderboard", aliases=["lb"])
     @commands.guild_only()
     async def leaderboard(self, ctx):
-        embed = discord.Embed(description="**leaderboard:**", color=discord.Color.dark_green())
-        orderedUsers = sorted(economyUtil.listMoney().items(), key=lambda i: i[1], reverse=True)
-        leaderboard = ""
-        for userItem in orderedUsers:
-            member = await ctx.guild.fetch_member(userItem[0])
-            leaderboard += f"{currencyLabel}`{str(userItem[1])}` - {member.nick if member.nick != None else member.name}\n"
-        embed.add_field(name='\uFEFF', value=leaderboard, inline=False) 
-        await ctx.send(content=None, embed=embed)
-
+        pass
 
 
 def setup(bot):

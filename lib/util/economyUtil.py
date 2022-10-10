@@ -32,6 +32,3 @@ def removeMoney(user: discord.Member.id, amt: float) -> None:
 def readMoney(user: discord.Member.id) -> str:
     return FileWriter.read(fileName)[balancesDir][str(user)]
     
-
-def listMoney() -> dict:
-    return FileWriter.read(fileName)[balancesDir]
