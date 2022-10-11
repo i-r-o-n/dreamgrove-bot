@@ -1,6 +1,0 @@
-/Procfile
-/secrets.json
-**/__pychache__
-*/__pychache__
-/env
-.pylintrc
