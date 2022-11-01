@@ -1,6 +1,13 @@
+# hosting
 /Procfile
 /secrets.json
+
+# cache files (only the double star wildcard match is needed, i think)
 **/__pychache__
 */__pychache__
-/env
+/__pychache__
+
 .pylintrc
+
+# venv
+/env
