@@ -1,0 +1,1 @@
+attempting to use purescript w/ the discord js wrapper
