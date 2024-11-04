@@ -4,16 +4,12 @@ name:                dreamgrove-bot
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/dreamgrove-bot#readme
-license:             BSD-3-Clause
-license-file:        LICENSE
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2024 Author name here
+homepage:            https://github.com/i-r-o-n/dreamgrove-bot#readme
+author:              i-r-o-n
 category:            Web
 build-type:          Simple
-extra-source-files:  README.md
-                     CHANGELOG.md
+extra-source-files:  readme.md
+                     changelog.md
 
 executable dreamgrove-bot
   hs-source-dirs:      src
