@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    volumes:
+      - .:/app
+      - bot-deps:/root/.stack
+      - ./data:/app/data  # persist data
+      - ./.env:/app/.env  # mount secrets
+    restart: unless-stopped  # auto restart on crash
+
+volumes:
+  bot-deps:
