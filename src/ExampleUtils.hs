@@ -15,7 +15,7 @@ getGuildId = do
   gids <- readFile "./.env/guild-id"
   case readMaybe gids of
     Just g  -> pure g
-    Nothing -> error "could not read guild id from `guildid.secret`"
+    Nothing -> error "could not read guild id"
 
 -- | Given the test server and an action operating on a channel id, get the
 -- first text channel of that server and use the action on that channel.
