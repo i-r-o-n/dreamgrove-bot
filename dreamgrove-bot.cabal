@@ -1,27 +1,69 @@
-cabal-version:       2.2
+cabal-version: 1.12
 
-name:                dreamgrove-bot
-version:             0.1.0.0
--- synopsis:
--- description:
-homepage:            https://github.com/i-r-o-n/dreamgrove-bot#readme
-author:              i-r-o-n
-category:            Web
-build-type:          Simple
-extra-source-files:  readme.md
-                     changelog.md
+-- This file has been generated from package.yaml by hpack version 0.37.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           dreamgrove-bot
+version:        0.1.0.0
+description:    Please see the README.md file
+homepage:       https://github.com/i-r-o-n/dreamgrove-bot#readme
+bug-reports:    https://github.com/i-r-o-n/dreamgrove-bot/issues
+build-type:     Simple
+extra-source-files:
+    readme.md
+    changelog.md
+
+source-repository head
+  type: git
+  location: https://github.com/i-r-o-n/dreamgrove-bot
+
+library
+  exposed-modules:
+      Bot
+      ExampleUtils
+  other-modules:
+      Paths_dreamgrove_bot
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      base
+    , discord-haskell
+    , text
+    , unliftio
+    , yaml
+  default-language: Haskell2010
 
 executable dreamgrove-bot
-  hs-source-dirs:      src
-  main-is:             Main.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-  ghc-options:         -Wall
-                       -Wcompat
-                       -Widentities
-                       -Wincomplete-record-updates
-                       -Wincomplete-uni-patterns
-                       -Wmissing-export-lists
-                       -Wmissing-home-modules
-                       -Wpartial-fields
-                       -Wredundant-constraints
+  main-is: Main.hs
+  other-modules:
+      Paths_dreamgrove_bot
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base
+    , discord-haskell
+    , dreamgrove-bot
+    , text
+    , unliftio
+    , yaml
+  default-language: Haskell2010
+
+test-suite dreamgrove-bot-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_dreamgrove_bot
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base
+    , discord-haskell
+    , dreamgrove-bot
+    , text
+    , unliftio
+    , yaml
+  default-language: Haskell2010

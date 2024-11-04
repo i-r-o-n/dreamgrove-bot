@@ -3,7 +3,28 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    hackage: discord-haskell-1.17.1@sha256:9ae8732e5f75572b3634ecdb124ba7fae68bbf5ec8b8b4c948e76af94c6c08d7,6723
+    pantry-tree:
+      sha256: 7ca6195c2d4bc0af06ffbb90fcab34789e3957fb36cea9669aff56c2ccdc238c
+      size: 3915
+  original:
+    hackage: discord-haskell-1.17.1
+- completed:
+    hackage: emoji-0.1.0.2@sha256:d995572a5c7dcd28f98eb15c6e387a7b3bda1ac2477ab0d9dba8580d5d7b161f,1273
+    pantry-tree:
+      sha256: dd9ea90a631342e5db0fc21331ade4d563a685e9125d5a3989eefa8e1b96c6c6
+      size: 437
+  original:
+    hackage: emoji-0.1.0.2
+- completed:
+    hackage: unliftio-0.2.25.0@sha256:d015242554890370bcbc3a575019be691d0edc279736ef97d29412fb9d0c4349,3410
+    pantry-tree:
+      sha256: 08c62f256e740e1a78b175907c26cb06439a1b486ceb8021c5a2e4425ebb6c5b
+      size: 2494
+  original:
+    hackage: unliftio-0.2.25.0
 snapshots:
 - completed:
     sha256: 521009bd88879b6993fab5ea5abe1ee2a539dfd8ec2dfc7c57017a8eaee1e78b
