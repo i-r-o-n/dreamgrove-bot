@@ -1,13 +1,29 @@
-# hosting
-/Procfile
-/secrets.json
-
-# cache files (only the double star wildcard match is needed, i think)
-**/__pychache__
-*/__pychache__
-/__pychache__
-
-.pylintrc
-
-# venv
-/env
+.stack-work/
+*~
+*.hi
+*.o
+dist
+dist-*
+cabal-dev
+.cabal-sandbox/
+cabal.sandbox.config
+.HSenv
+*.env
+.ghc.environment.*
+.hie/
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc
+*.prof
+*.aux
+*.hp
+*.eventlog
+.stack-work/
+cabal.project.local
+cabal.project.local~
+.HTF/
+.ghc.environment.*
+.env
+data/*.yaml
