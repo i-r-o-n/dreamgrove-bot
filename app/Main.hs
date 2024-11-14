@@ -11,10 +11,8 @@ import           Discord
 import qualified Discord.Requests    as R
 import           Discord.Types
 
-import           Action              (actionWithDefaultChannel)
 import           Env                 (getGuildId, getTestChannelId, getToken)
 
--- Allows this code to be an executable. See discord-haskell.cabal
 main :: IO ()
 main = pingpongExample
 
@@ -22,15 +20,15 @@ main = pingpongExample
 pingpongExample :: IO ()
 pingpongExample = do
   tok <- getToken
-  testserverid <- getGuildId
-  testchannelid <- getTestChannelId
+  serverid <- getGuildId
+  channelid <- getTestChannelId
 
   -- open ghci and run  [[ :info RunDiscordOpts ]] to see available fields
   err <-
     runDiscord
       def
         { discordToken = tok
-        , discordOnStart = startHandler testserverid testchannelid
+        , discordOnStart = startHandler serverid channelid
         , discordOnEnd = liftIO $ threadDelay (round (0.4 * 10 ^ 6)) >> putStrLn "Ended"
         , discordOnEvent = eventHandler
         , discordOnLog = \s -> TIO.putStrLn s >> TIO.putStrLn ""
@@ -41,9 +39,9 @@ pingpongExample = do
   TIO.putStrLn err
 
 -- If the start handler throws an exception, discord-haskell will gracefully shutdown
---     Use place to execute commands you know you want to complete
+-- Use place to execute commands you know you want to complete
 startHandler :: GuildId -> ChannelId -> DiscordHandler ()
-startHandler testserverid testchannelid = do
+startHandler serverid channelid = do
   liftIO $ putStrLn "Started ping-pong bot"
 
   let activity =
@@ -60,10 +58,7 @@ startHandler testserverid testchannelid = do
           }
   sendCommand (UpdateStatus opts)
 
-  void $ restCall $ R.CreateMessage testchannelid "Hello! I will reply to pings with pongs"
-
--- actionWithDefaultChannel testserverid $
---   \cid -> void $ restCall $ R.CreateMessage cid "Hello! I will reply to pings with pongs"
+  void $ restCall $ R.CreateMessage channelid "Hello! I will reply to pings with pongs"
 
 -- If an event handler throws an exception, discord-haskell will continue to run
 eventHandler :: Event -> DiscordHandler ()
