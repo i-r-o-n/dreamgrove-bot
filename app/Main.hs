@@ -18,7 +18,7 @@ import           Env                 (getGuildId, getTestChannelId, getToken)
 main :: IO ()
 main = pingpongExample
 
--- | Replies "pong" to every message that starts with "ping"
+-- Replies "pong" to every message that starts with "ping"
 pingpongExample :: IO ()
 pingpongExample = do
   tok <- getToken
@@ -37,8 +37,7 @@ pingpongExample = do
         , discordGatewayIntent = def{gatewayIntentMembers = True, gatewayIntentPresences = True}
         }
 
-  -- only reached on an unrecoverable error
-  -- put normal 'cleanup' code in discordOnEnd
+  -- only reached on an unrecoverable error; put normal 'cleanup' code in discordOnEnd
   TIO.putStrLn err
 
 -- If the start handler throws an exception, discord-haskell will gracefully shutdown
