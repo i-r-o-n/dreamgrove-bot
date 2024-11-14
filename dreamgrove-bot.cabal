@@ -20,8 +20,9 @@ source-repository head
 
 library
   exposed-modules:
+      Action
       Bot
-      ExampleUtils
+      Env
   other-modules:
       Paths_dreamgrove_bot
   hs-source-dirs:
