@@ -21,15 +21,20 @@ description:         Please see the README.md file
 
 dependencies:
 - base
+- bytestring
+- cassava
 - discord-haskell
+- directory
+- hspec
 - text
-- yaml 
+- time
 - unliftio
+- vector
+- yaml 
 # - aeson
 # - bytestring
 # - containers
 # - mtl
-# - directory
 # - filepath
 
 ghc-options:

@@ -11,7 +11,7 @@ import           Discord
 import qualified Discord.Requests    as R
 import           Discord.Types
 
-import           Env                 (getGuildId, getTestChannelId, getToken)
+import           Config.Env          (getGuildId, getTestChannelId, getToken)
 
 main :: IO ()
 main = pingpongExample

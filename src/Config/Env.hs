@@ -1,4 +1,4 @@
-module Env where
+module Config.Env where
 
 import qualified Data.Text     as T
 import qualified Data.Text.IO  as TIO
@@ -21,3 +21,6 @@ getTestChannelId = do
   case readMaybe cid of
     Just c  -> pure c
     Nothing -> error "cound not read test channel id"
+
+databasePath :: FilePath
+databasePath = "./data/database.csv"
