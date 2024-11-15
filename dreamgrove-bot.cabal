@@ -20,7 +20,8 @@ source-repository head
 
 library
   exposed-modules:
-      Bot
+      Bot.Handlers
+      Bot.Message
       Config.Env
       Config.YAML
       Database.CSV

@@ -12,13 +12,6 @@ cleanup file = removeFile file `catch` \(_ :: SomeException) -> return ()
 main :: IO ()
 main = hspec $ do
   describe "User" $ do
-    -- let testUser =
-    --       User $
-    --         def
-    --           { discordUserName = "Discord Name"
-    --           , minecraftUserName = "MinecraftName"
-    --           }
-
     let testUser = User "Discord Name" "MinecraftName"
 
     it "creates user correctly" $ do
