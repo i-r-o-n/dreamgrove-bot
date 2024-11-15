@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Bot.Handlers where
 
 import           Control.Monad       (void, when)
@@ -37,7 +39,7 @@ startHandler serverid channelid = do
 -- If an event handler throws an exception, discord-haskell will continue to run
 eventHandler :: Event -> DiscordHandler ()
 eventHandler event = case event of
-  MessageCreate m -> when (not (fromBot m) && messageContains "ping" m) $ do
+  MessageCreate m -> when (not (fromBot m) && messageStartsWith "ping" m) $ do
     void $ restCall (R.CreateReaction (messageChannelId m, messageId m) "eyes")
     threadDelay (2 * 10 ^ (6 :: Int))
 
