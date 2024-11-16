@@ -2,17 +2,18 @@
 
 module Bot.Handlers where
 
-import           Control.Monad       (void, when)
-import qualified Data.Text           as T
+import           Control.Monad    (void, when)
+import qualified Data.Text        as T
 
-import           UnliftIO            (liftIO)
-import           UnliftIO.Concurrent
+import           Bot.Scheduler
+import           UnliftIO         (liftIO)
 
 import           Discord
-import qualified Discord.Requests    as R
+import qualified Discord.Requests as R
 import           Discord.Types
 
-import           Bot.Message         (fromBot, messageStartsWith)
+import           Bot.Message      (editMessage, fromBot, messageStartsWith,
+                                   sendMessage)
 
 -- If the start handler throws an exception, discord-haskell will gracefully shutdown
 -- Use place to execute commands you know you want to complete
@@ -41,15 +42,16 @@ eventHandler :: Event -> DiscordHandler ()
 eventHandler event = case event of
   MessageCreate m -> when (not (fromBot m) && messageStartsWith "ping" m) $ do
     void $ restCall (R.CreateReaction (messageChannelId m, messageId m) "eyes")
-    threadDelay (2 * 10 ^ (6 :: Int))
+    delaySeconds 2
 
-    Right m' <- restCall (R.CreateMessage (messageChannelId m) "Pong")
-    void $ restCall (R.EditMessage (messageChannelId m, messageId m') (def{R.messageDetailedContent = messageContent m' <> "!"}))
+    -- Send "Pong" message
+    Right m' <- restCall (sendMessage (messageChannelId m) "Pong")
+    -- Edit message to "Pong!"
+    void $ restCall (editMessage (<> "!") m')
 
     latency <- getGatewayLatency
     mLatency <- measureLatency
 
-    -- Use ":info" in ghci to explore the type
     let opts :: R.MessageDetailedOpts
         opts =
           def

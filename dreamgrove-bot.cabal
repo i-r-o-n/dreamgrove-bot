@@ -20,8 +20,13 @@ source-repository head
 
 library
   exposed-modules:
+      Bot.Events.Events
+      Bot.Guild
       Bot.Handlers
       Bot.Message
+      Bot.Scheduler
+      Bot.Users.Intro
+      Bot.Users.Roles
       Config.Env
       Config.YAML
       Database.CSV
