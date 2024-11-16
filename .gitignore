@@ -2,14 +2,11 @@
 *~
 *.hi
 *.o
+
 dist
 dist-*
-cabal-dev
-.cabal-sandbox/
-cabal.sandbox.config
+
 .HSenv
-*.env
-.ghc.environment.*
 .hie/
 *.chi
 *.chs.h
@@ -20,12 +17,19 @@ cabal.sandbox.config
 *.aux
 *.hp
 *.eventlog
-.stack-work/
+
+cabal-dev
+.cabal-sandbox/
+cabal.sandbox.config
 cabal.project.local
 cabal.project.local~
 .HTF/
+
 .ghc.environment.*
+*.env
 .env
+
+tags
 
 data/*.yaml
 data/*.yml
