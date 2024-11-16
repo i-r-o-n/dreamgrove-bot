@@ -47,8 +47,8 @@ main = hspec $ do
     let testUser = User "Discord Name" minecraftUser (fromJust $ monthDay 12 31)
 
     it "creates user correctly" $ do
-      discordUserName testUser `shouldBe` "Discord Name"
-      let (MinecraftUsername minecraftUser) = minecraftUserName testUser
+      discord testUser `shouldBe` "Discord Name"
+      let (MinecraftUsername minecraftUser) = minecraft testUser
       minecraftUser `shouldBe` "MinecraftName"
       birthday testUser `shouldBe` fromJust (monthDay 12 31)
 
@@ -80,8 +80,8 @@ main = hspec $ do
         case result of
           Right users -> do
             let firstUser = V.head users
-            discordUserName firstUser `shouldBe` "Discord 1"
-            let (MinecraftUsername minecraftUser) = minecraftUserName firstUser
+            discord firstUser `shouldBe` "Discord 1"
+            let (MinecraftUsername minecraftUser) = minecraft firstUser
             minecraftUser `shouldBe` "Minecraft1"
             birthday firstUser `shouldBe` fromJust (monthDay 12 31)
           Left err -> expectationFailure $ "Failed to read CSV: " ++ err

@@ -8,9 +8,9 @@ import           GHC.Generics
 import           Minecraft.Username (MinecraftUsername, minecraftUsername)
 
 data User = User
-  { discordUserName   :: !String
-  , minecraftUserName :: !MinecraftUsername
-  , birthday          :: !MonthDay
+  { discord   :: !String
+  , minecraft :: !MinecraftUsername
+  , birthday  :: !MonthDay
   }
   deriving (Generic, Show, Eq)
 
