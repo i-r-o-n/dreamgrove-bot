@@ -73,6 +73,8 @@ test-suite dreamgrove-bot-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Database.CSVSpec
+      Minecraft.UsernameSpec
       Paths_dreamgrove_bot
   hs-source-dirs:
       test
