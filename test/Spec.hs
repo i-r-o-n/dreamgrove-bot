@@ -1,15 +1,16 @@
 {-# LANGUAGE OverloadedStrings   #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-import           Control.Exception  (SomeException, catch)
+import           Control.Exception      (SomeException, catch)
 import           Data.Either
 import           Data.Maybe
-import qualified Data.Vector        as V
+import qualified Data.Vector            as V
 import           Database.CSV
 import           Database.MonthDay
-import           Database.Types     (User (..), user)
+import           Database.Types         (User (..), user)
 import           Minecraft.Username
-import           System.Directory   (removeFile)
+import qualified Minecraft.UsernameSpec
+import           System.Directory       (removeFile)
 import           Test.Hspec
 
 cleanup :: FilePath -> IO ()
@@ -17,27 +18,8 @@ cleanup file = removeFile file `catch` \(_ :: SomeException) -> return ()
 
 main :: IO ()
 main = hspec $ do
-  describe "MinecraftUsername" $ do
-    it "accepts valid usernames" $ do
-      minecraftUsername "Player123" `shouldBe` Right (MinecraftUsername "Player123")
-      minecraftUsername "Valid_Name" `shouldBe` Right (MinecraftUsername "Valid_Name")
-      minecraftUsername "abc" `shouldBe` Right (MinecraftUsername "abc")
+  Minecraft.UsernameSpec.spec
 
-    it "rejects too short usernames" $ do
-      minecraftUsername "ab"
-        `shouldBe` Left "Minecraft username must be at least 3 characters"
-
-    it "rejects too long usernames" $ do
-      minecraftUsername "ThisUsernameIsWayTooLong"
-        `shouldBe` Left "Minecraft username must be no more than 16 characters"
-
-    it "rejects invalid characters" $ do
-      minecraftUsername "Invalid!"
-        `shouldBe` Left "Minecraft username can only contain letters, numbers, and underscore"
-      minecraftUsername "No Spaces"
-        `shouldBe` Left "Minecraft username can only contain letters, numbers, and underscore"
-      minecraftUsername "No-Hyphens"
-        `shouldBe` Left "Minecraft username can only contain letters, numbers, and underscore"
 
   describe "User" $ do
     let minecraftUser = case minecraftUsername "MinecraftName" of
@@ -98,34 +80,3 @@ main = hspec $ do
         case result of
           Left _  -> return ()
           Right _ -> expectationFailure "Should have failed on missing file"
-
-{-
--- Example usage function
-example :: IO ()
-example = do
-  -- Create sample data
-  let sampleData =
-        V.fromList
-          [ User "discord_username1" "mc_username2" (fromJust $ monthDay 1 1)
-          , User "discord_username2" "mc_username2" (fromJust $ monthDay 12 31)
-          ]
-
-  -- Write to file
-  writeCSVFile databasePath sampleData
-  putStrLn "Written to people.csv"
-
-  -- Read from file
-  -- result <- readCSVFile databasePath
-  -- case result of
-  --   Right d -> do
-  --     putStrLn "Successfully read database:"
-  --     V.mapM_ print d
-  --   Left err -> putStrLn $ "Error reading CSV: " ++ err
-
-  readCSVFile databasePath >>= \case
-    Right d -> do
-      putStrLn "Successfully read database:"
-      V.mapM_ print d
-    Left err -> putStrLn $ "Error reading CSV: " ++ err
-
-      -}
