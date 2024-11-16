@@ -3,13 +3,11 @@
 
 module Database.CSV where
 
-import           Config.Env           (databasePath)
 import           Control.Exception    (catch)
 import qualified Data.ByteString.Lazy as BL
 import           Data.Csv
 import qualified Data.Vector          as V
 import           Database.Types
-import           GHC.Generics
 
 -- Read CSV file with headers
 readCSVFile :: FilePath -> IO (Either String (V.Vector User))
@@ -30,35 +28,7 @@ writeCSVFile path persons =
   handleError :: IOError -> IO ()
   handleError e = putStrLn $ "Error writing file: " ++ show e
 
--- Example usage function
-example :: IO ()
-example = do
-  -- Create sample data
-  let sampleData =
-        V.fromList
-          [ User "discord_username1" "mc_username2" -- (fromGregorian 2000 1 1)
-          , User "discord_username2" "mc_username2" -- (fromGregorian 2000 12 31)
-          ]
-
-  -- Write to file
-  writeCSVFile databasePath sampleData
-  putStrLn "Written to people.csv"
-
-  -- Read from file
-  -- result <- readCSVFile databasePath
-  -- case result of
-  --   Right d -> do
-  --     putStrLn "Successfully read database:"
-  --     V.mapM_ print d
-  --   Left err -> putStrLn $ "Error reading CSV: " ++ err
-
-  readCSVFile databasePath >>= \case
-    Right d -> do
-      putStrLn "Successfully read database:"
-      V.mapM_ print d
-    Left err -> putStrLn $ "Error reading CSV: " ++ err
-
--- read CSV without headers
+-- Read CSV without headers
 readCSVNoHeaders :: FilePath -> IO (Either String (V.Vector (V.Vector String)))
 readCSVNoHeaders path = do
   contents <- BL.readFile path `catch` handleError
@@ -67,7 +37,7 @@ readCSVNoHeaders path = do
   handleError :: IOError -> IO BL.ByteString
   handleError _ = return ""
 
--- write CSV without headers
+-- Write CSV without headers
 writeCSVNoHeaders :: FilePath -> V.Vector (V.Vector String) -> IO ()
 writeCSVNoHeaders path rows =
   do

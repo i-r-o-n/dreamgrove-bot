@@ -12,7 +12,7 @@ import           Discord
 import qualified Discord.Requests    as R
 import           Discord.Types
 
-import           Bot.Message         (fromBot, messageContains)
+import           Bot.Message         (fromBot, messageStartsWith)
 
 -- If the start handler throws an exception, discord-haskell will gracefully shutdown
 -- Use place to execute commands you know you want to complete

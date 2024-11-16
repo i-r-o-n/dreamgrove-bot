@@ -1,12 +1,14 @@
 {-# LANGUAGE DeriveGeneric #-}
 
-module MonthDay where
+module Database.MonthDay where
 
+import           Data.Csv
 import           Data.Time.Calendar
 import           Data.Time.Format
 import           GHC.Generics       (Generic)
 import           Text.Printf        (printf)
 
+-- Day of the year
 data MonthDay = MonthDay
   { month :: !Int -- 1-12
   , day   :: !Int -- 1-31
@@ -17,6 +19,17 @@ data MonthDay = MonthDay
 instance Ord MonthDay where
   compare (MonthDay m1 d1) (MonthDay m2 d2) =
     compare (m1, d1) (m2, d2)
+
+-- For CSV conversion
+instance FromField MonthDay where
+  parseField s = do
+    str <- parseField s
+    case parseMonthDay str of
+      Just md -> pure md
+      Nothing -> fail "Invalid MonthDay format"
+
+instance ToField MonthDay where
+  toField = toField . formatMonthDayNumeric
 
 monthDay :: Int -> Int -> Maybe MonthDay
 monthDay m d
