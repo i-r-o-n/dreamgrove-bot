@@ -3,7 +3,7 @@
 module Database.Types where
 
 import           Data.Csv
-import           Database.MonthDay  (MonthDay)
+import           Database.MonthDay  (MonthDay, monthDay)
 import           GHC.Generics
 import           Minecraft.Username (MinecraftUsername, minecraftUsername)
 
@@ -15,9 +15,15 @@ data User = User
   deriving (Generic, Show, Eq)
 
 user :: String -> String -> MonthDay -> Either String User
-user discord minecraft birthday = do
-  mc <- minecraftUsername minecraft
-  Right $ User discord mc birthday
+user d m b = do
+  mc <- minecraftUsername m
+  Right $ User d mc b
+
+user' :: String -> String -> (Int, Int) -> Either String User
+user' dc mcUsr (month, day) = do
+  mc <- minecraftUsername mcUsr
+  bday <- maybe (Left "Invalid birthday date") Right (monthDay month day)
+  Right $ User dc mc bday
 
 -- for CSV conversion
 instance FromNamedRecord User
