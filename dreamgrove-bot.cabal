@@ -74,6 +74,7 @@ test-suite dreamgrove-bot-test
   main-is: Spec.hs
   other-modules:
       Database.CSVSpec
+      Database.TypesSpec
       Minecraft.UsernameSpec
       Paths_dreamgrove_bot
   hs-source-dirs:
