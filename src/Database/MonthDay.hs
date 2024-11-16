@@ -41,9 +41,9 @@ monthDay m d
   | otherwise = Nothing
  where
   daysInMonth :: Int -> Int
-  daysInMonth 2 = 29
-  daysInMonth m
-    | m `elem` [4, 6, 9, 11] = 30
+  daysInMonth m'
+    | m' == 2 = 29
+    | m' `elem` [4, 6, 9, 11] = 30
     | otherwise = 31
 
 -- Format MonthDay to String (e.g. "December 31")

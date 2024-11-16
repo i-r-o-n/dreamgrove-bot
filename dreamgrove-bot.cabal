@@ -25,6 +25,7 @@ library
       Config.Env
       Config.YAML
       Database.CSV
+      Database.Database
       Database.MonthDay
       Database.Types
       Minecraft.Username
