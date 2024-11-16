@@ -5,3 +5,5 @@ a bot to perform the following tasks:
 - provide reminders to users 
 - hold an economy
 - host polls 
+
+see [changelog.md](changelog.md).

@@ -8,4 +8,14 @@ and this project adheres to the
 
 ## Unreleased
 
-## 0.1.0.0 - YYYY-MM-DD
+Started project. 
+
+## 0.1.0.0 - 2024-11-01
+
+Decided to use this file like a journal. 
+
+## 0.1.0.1 - 2024-11-16
+
+Made some progress writing tests and outlining functions by type.
+
+
