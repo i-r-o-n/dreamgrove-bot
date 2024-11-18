@@ -1,9 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Database.CSV (
-  readCSVFile,
-  writeCSVFile,
-) where
+module Database.CSV where
 
 import           Control.Exception    (catch)
 import qualified Data.ByteString.Lazy as BL

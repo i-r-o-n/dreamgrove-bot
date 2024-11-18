@@ -20,6 +20,7 @@ pingpongExample = do
   tok <- getToken
   serverid <- getGuildId
   channelid <- getTestChannelId
+  -- logModule <- createLoggingModule cid
 
   err <-
     runDiscord

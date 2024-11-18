@@ -1,10 +1,12 @@
-module Bot.Users.Intros where
+module Bot.Users.Intro where
+
+import           Discord.Types
 
 -- get users messages in introductions channel
 
-import Discord.Types
+hasIntro :: UserId -> IO Bool
+hasIntro = _
 
-hasIntro :: UserId -> IO Bool 
-hasIntro _ = 
-
-
+-- NOTE: might need special mention user permissions in message
+requestIntroMessage :: String -> String
+requestIntroMessage user = "Hello " ++ user ++ ", please introduce yourself in the introductions channel."

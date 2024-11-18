@@ -24,3 +24,6 @@ getTestChannelId = do
 
 databasePath :: FilePath
 databasePath = "./data/database.csv"
+
+schedulePath :: FilePath
+schedulePath = "./data/schedule.csv"

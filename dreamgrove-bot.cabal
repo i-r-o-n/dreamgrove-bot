@@ -20,17 +20,23 @@ source-repository head
 
 library
   exposed-modules:
+      Bot.Activity
+      Bot.Commands.Commands
       Bot.Events.Events
       Bot.Guild
       Bot.Handlers
+      Bot.Log.Log
       Bot.Message
       Bot.Scheduler
       Bot.Users.Intro
       Bot.Users.Roles
+      Bot.Users.Users
       Config.Env
+      Config.Types
       Config.YAML
       Database.CSV
       Database.Database
+      Database.Economy.Economy
       Database.MonthDay
       Database.Types
       Minecraft.Username
@@ -79,6 +85,7 @@ test-suite dreamgrove-bot-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Config.YAMLSpec
       Database.CSVSpec
       Database.MonthDaySpec
       Database.TypesSpec
